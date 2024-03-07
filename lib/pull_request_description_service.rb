@@ -68,7 +68,7 @@ module PullRequestDescriptionService
         parameters: {
           # model: "gpt-3.5-turbo-16k", # Required.
           # model: "gpt-4-32k-0613",
-          model: ENV.fetch('OPENAI_MODEL', 'gpt-3.5-turbo-16k'),
+          model: ENV.fetch('OPENAI_MODEL', 'gpt-4-turbo-preview'),
           messages: [
             {role: "system", content: "You are a helpful assistant that's going to help write a PR description."},
             {role: "user", content: prompt}
