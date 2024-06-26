@@ -37,7 +37,7 @@ module PullRequestDescriptionService
       template_markdown = if @pull_request_template != ""
         File.read("templates/#{@pull_request_template}")
       else
-        "Give a description of the changes in a list of this PR."
+        "Give a description of the changes in a list of this PR. Use markdown, but do not enclose any part of the answer in backticks.  Do not add any advice or final thoughts."
       end
 
       commits = get_commits_from_pull_request
@@ -59,7 +59,7 @@ module PullRequestDescriptionService
         #{template_markdown}
         ```
 
-        Give PR description using the format above, remove sections that are not relevant to the diff.
+        Give PR description using the format above, remove sections that are not relevant to the diff.  Use markdown, but do not enclose any part of the answer in backticks.  Do not add any advice or final thoughts.
       PROMPT
 
       puts "Prompt: #{prompt}"
