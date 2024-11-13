@@ -55,11 +55,9 @@ module PullRequestDescriptionService
 
         Write a Pull Request description for this diff in this format:
 
-        ```md
         #{template_markdown}
-        ```
 
-        Give PR description using the format above, remove sections that are not relevant to the diff.  Use markdown, but do not enclose any part of the answer in backticks.  Do not add any advice or final thoughts.
+        Give PR description using the format above, remove sections that are not relevant to the diff.  Use markdown, but do not enclose any part of the answer in backticks.   Do not add any advice, final thoughts, or additional commentary about PRs in general.
       PROMPT
 
       puts "Prompt: #{prompt}"
@@ -68,9 +66,9 @@ module PullRequestDescriptionService
         parameters: {
           # model: "gpt-3.5-turbo-16k", # Required.
           # model: "gpt-4-32k-0613",
-          model: ENV.fetch('OPENAI_MODEL', 'gpt-4-turbo-preview'),
+          model: ENV.fetch('OPENAI_MODEL', 'gpt-4o'),
           messages: [
-            {role: "system", content: "You are a helpful assistant that's going to help write a PR description."},
+            {role: "system", content: "You are a helpful assistant that's going to help write an unbiased PR description."},
             {role: "user", content: prompt}
           ],
           temperature: 0.7,
