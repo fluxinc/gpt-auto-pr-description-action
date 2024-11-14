@@ -34,7 +34,7 @@ module PullRequestDescriptionService
     # @return [String] the generated PR description
     def generate_prompt
       # If the pull_request_template.md file is set, read its contents
-      template_markdown = if @pull_request_template != ""
+      template_markdown = if @pull_request_template && !@pull_request_template.empty?
         File.read("templates/#{@pull_request_template}")
       else
         "Give a description of the changes in a list of this PR. Use markdown, but do not enclose any part of the answer in backticks.  Do not add any advice or final thoughts."
