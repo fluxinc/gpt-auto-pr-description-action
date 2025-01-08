@@ -55,6 +55,10 @@ runs:
         bundle install
       shell: bash
 
+    - name: Echo branch
+      run: echo "Running on branch ${{ github.head_ref }}"
+      shell: bash
+
     - id: change-description
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
@@ -68,3 +72,4 @@ runs:
         OPENAI_MODEL: ${{ inputs.openai-model }}
       run: bundle exec ruby run.rb
       shell: bash
+      working-directory: .
