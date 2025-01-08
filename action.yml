@@ -38,9 +38,6 @@ runs:
 
     - name: Checkout tools repo
       uses: actions/checkout@v3
-      with:
-        repository: "kieranklaassen/gpt-auto-pr-description-action"
-        ref: "main"
 
     - name: Checkout template file
       uses: actions/checkout@v3
