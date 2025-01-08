@@ -38,6 +38,9 @@ runs:
 
     - name: Checkout tools repo
       uses: actions/checkout@v3
+      with:
+        repository: "fluxinc/gpt-auto-pr-description-action"
+        ref: "fix/force-remove-md-wrapping-in-response"
 
     - name: Checkout template file
       uses: actions/checkout@v3
