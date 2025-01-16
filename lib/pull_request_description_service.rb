@@ -37,7 +37,7 @@ module PullRequestDescriptionService
       template_markdown = if @pull_request_template && !@pull_request_template.empty?
         File.read("templates/#{@pull_request_template}")
       else
-        "Give a description of the changes in a list of this PR. Use markdown, but do not enclose any part of the answer in backticks.  Do not add any advice or final thoughts."
+        "Give a description of the changes in a list of this PR. Use markdown formatting, but do not place backticks at the start and end of the answer.  Do not add any advice or final thoughts."
       end
 
       commits = get_commits_from_pull_request
@@ -57,7 +57,7 @@ module PullRequestDescriptionService
 
         #{template_markdown}
 
-        Give PR description using the format above, remove sections that are not relevant to the diff.  Use markdown, but do not enclose any part of the answer in backticks.   Do not add any advice, final thoughts, or additional commentary about PRs in general.
+        Give PR description using the format above, remove sections that are not relevant to the diff.  Use markdown, but do not place backticks at the start and end of the answer, even if they are included in the template.   Do not add any advice, final thoughts, or additional commentary about PRs in general.
       PROMPT
 
       puts "Prompt: #{prompt}"
@@ -68,7 +68,7 @@ module PullRequestDescriptionService
           # model: "gpt-4-32k-0613",
           model: ENV.fetch('OPENAI_MODEL', 'gpt-4o'),
           messages: [
-            {role: "system", content: "You are a helpful assistant that's going to help write an unbiased PR description."},
+            {role: "system", content: "You are a helpful assistant that's going to help write an unbiased PR description. You give your answers in markdown format, but you never enclose the answer in backticks."},
             {role: "user", content: prompt}
           ],
           temperature: 0.7,

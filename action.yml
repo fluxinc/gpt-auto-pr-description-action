@@ -39,8 +39,8 @@ runs:
     - name: Checkout tools repo
       uses: actions/checkout@v3
       with:
-        repository: "kieranklaassen/gpt-auto-pr-description-action"
-        ref: "main"
+        repository: "fluxinc/gpt-auto-pr-description-action"
+        ref: "master"
 
     - name: Checkout template file
       uses: actions/checkout@v3
@@ -58,6 +58,10 @@ runs:
         bundle install
       shell: bash
 
+    - name: Echo branch
+      run: echo "Running on branch ${{ github.head_ref }}"
+      shell: bash
+
     - id: change-description
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
@@ -71,3 +75,4 @@ runs:
         OPENAI_MODEL: ${{ inputs.openai-model }}
       run: bundle exec ruby run.rb
       shell: bash
+      working-directory: .
